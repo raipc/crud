@@ -50,6 +50,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	testLogging {
+		events("failed")
+		setExceptionFormat("FULL")
+	}
 }
 
 openApi {
