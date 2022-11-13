@@ -1,10 +1,9 @@
 package io.githib.raipc.crud
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
@@ -13,13 +12,12 @@ import java.sql.Connection
 
 @Testcontainers
 abstract class TCIntegrationTest {
+    @Autowired
+    private lateinit var jsonMapper: ObjectMapper
+
+    fun Any.toJsonString() = jsonMapper.writeValueAsString(this)
+
     companion object {
-        private val jsonMapper = ObjectMapper()
-            .registerModule(JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-
-        fun Any.toJsonString() = jsonMapper.writeValueAsString(this)
-
         @JvmStatic
         val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres:15")
             .withDatabaseName("integration-tests-db")
