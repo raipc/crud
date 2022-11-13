@@ -3,6 +3,7 @@ package io.githib.raipc.crud.convertrequest
 import io.githib.raipc.crud.exchange.CurrencyExchangeService
 import io.githib.raipc.crud.util.ModelConverter
 import org.springframework.stereotype.Service
+import java.time.temporal.ChronoUnit
 
 @Service
 class RequestModelConverter(private val exchangeService: CurrencyExchangeService) :
@@ -16,7 +17,7 @@ class RequestModelConverter(private val exchangeService: CurrencyExchangeService
             quantity = dto.quantity,
             rate = dto.rate,
             userId = testUserId,
-            createdAt = dto.createdAt
+            createdAt = dto.createdAt?.truncatedTo(ChronoUnit.MICROS)
         )
     }
 
