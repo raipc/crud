@@ -19,6 +19,7 @@ class IdempotencyServiceImpl<Req, Resp> : IdempotencyService<Req, Resp> {
             }
             val result = prev.result.get() ?: throw ConflictingRequestException(key)
             if (result is Exception) throw result
+            @Suppress("UNCHECKED_CAST")
             return result as Resp
         } else {
             try {

@@ -1,7 +1,7 @@
 package io.githib.raipc.crud.exchange
 
 import io.githib.raipc.crud.currency.Currency
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 data class CurrencyExchange(

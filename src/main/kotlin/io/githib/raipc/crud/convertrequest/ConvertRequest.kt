@@ -1,9 +1,9 @@
 package io.githib.raipc.crud.convertrequest
 
 import io.githib.raipc.crud.exchange.CurrencyExchange
-import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.Instant
+import javax.persistence.*
 
 @Entity
 data class ConvertRequest(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long?,

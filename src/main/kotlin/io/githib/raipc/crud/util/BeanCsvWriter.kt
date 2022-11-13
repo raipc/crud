@@ -43,6 +43,7 @@ class BeanCsvWriter<T> private constructor(
                 clazz.memberProperties.map { it.name }
             }.toTypedArray()
             val propsByName = clazz.memberProperties.associateBy { it.name }
+            @Suppress("UNCHECKED_CAST")
             val propsArray = namesInOrder.map { propsByName[it] as KProperty1<Any, *> }.toTypedArray()
             return BeanCsvWriter(propsArray, namesInOrder)
         }
