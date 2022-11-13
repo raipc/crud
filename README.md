@@ -28,5 +28,7 @@ export SPRING_DATASOURCE_PASSWORD=dbpassword
 ./gradlew bootRun
 ```
 
+The application starts on port 8080. 
+Check [Swagger](https://raipc.github.io/crud/) documentation for available API methods
 
 
